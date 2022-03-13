@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>axios-js</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body onload="fReset()">
+    <div id="container">
+        <h1>Weergaven van de biertabel vanuit API</h1>
+        <div style="display:flex">
+            <div style="display:flex; flex-direction: column;">
+                <button onclick="fLoadJson('naam')">laat <i>[naam], [brouwer]</i> zien</button>
+                <button onclick="fLoadJson('tabel')">laat <i>table-bieren</i> zien</button>
+                <button onclick="fLoadJson('tabel_obj')"><i>table-bieren</i> via obj-build</button>
+            </div>
+            <div id="infoDiv"></div>
+        </div>
+        <button onclick="fReset()" style="background-color:lightgreen">leeg output</button>
+        <div id="output"></div>
+        <div id="outputTime"></div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

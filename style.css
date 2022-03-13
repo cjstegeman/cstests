@@ -1,0 +1,50 @@
+body {
+    font-family: verdana;
+    font-size:10px;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: .1em 0 .5em 0;
+}
+
+#outputTime, #infoDiv, #output {
+    border:1px solid gray;
+    border-radius: 4px;
+    padding:5px;
+    margin: 10px 0;
+}
+
+#output {
+    max-height: 50vh;
+    overflow: auto;
+} 
+
+#infoDiv {
+    margin: 0 0 0 10px;
+}
+
+ul {
+    margin: 0;
+    padding-left: 1.4em;
+}
+
+button {
+    margin-bottom: 5px;
+}
+
+/*  ------------- start ------------ tabel opmaak tblA ------------------------------------------------------------  */
+.tblA { border-spacing: 0; margin:5px 0; border-collapse: separate; }
+.tblA td, .tblA th {
+	border:1px solid #CCC;
+	border-right-width: 0;
+	border-bottom-width: 0;
+	padding:5px;
+}
+.tblA th { background-color: #EEE; font-weight:bolder; text-align: center;}
+.tblA th:last-child, .tblA td:last-child { border-right-width: 1px; }
+.tblA tr:last-child td, .tblA tr:last-child th {  border-bottom-width: 1px; }
+.tblA tr:first-child th:first-child, .tblA tr:first-child td:first-child { border-top-left-radius: 5px; }
+.tblA tr:first-child th:last-child,  .tblA tr:first-child td:last-child  { border-top-right-radius: 5px; }
+.tblA tr:last-child  th:first-child, .tblA tr:last-child  td:first-child { border-bottom-left-radius: 5px; }
+.tblA tr:last-child  th:last-child,  .tblA tr:last-child  td:last-child  { border-bottom-right-radius: 5px; }
+/*  ------------- stop ------------ tabel opmaak tblA -------------------------------------------------------------  */
