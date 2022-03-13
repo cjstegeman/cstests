@@ -3,6 +3,25 @@ let beers = [];
 let currentDate, timestart, timestop;   
 let out = document.getElementById("output");
 let infoDiv = document.getElementById("infoDiv");
+let oInfo;
+
+function fInitialize() {
+    fLoadInfo();
+    out.innerHTML = "<i>Output HTML</i>";
+    infoDiv.innerHTML = "<i>Opbouw output</i>";
+}
+
+function fLoadInfo() {
+    axios.get("../pm_api.json")
+        .then((response) => {
+            // console.log("response =", response);
+            oInfo = response.data.oInfo;
+            console.log("oInfo =", oInfo);
+        })
+        .catch(function (error) {
+            console.log("error=", error);
+        });
+}
 
 function fLoadJson(weergave) {
     let url = 'https://15euros.nl/api/bier_basic.php';
@@ -20,7 +39,7 @@ function fLoadJson(weergave) {
 // fLoadJson('test');
 
 function fShow(beers, weergave) {
-    //console.log("beers A =", beers);
+    console.log("beers A =", beers); console.log("weergave =", weergave); console.log("oInfo =", oInfo);
     out.innerHTML = "<h3>Biertjes (weergave: " + weergave + ")</h3>";
     let info = "<h3>Opbouw output:</h3><ul>";
     oInfo[weergave].forEach(function (item, index) {
@@ -32,11 +51,6 @@ function fShow(beers, weergave) {
     if (weergave == 'naam') fShowNaam(beers);
     if (weergave == 'tabel') fShowTabel(beers);
     if (weergave == 'tabel_obj') fShowTabelObjBuild(beers);
-}
-
-function fReset() {
-    out.innerHTML     = "<i>Output HTML</i>";
-    infoDiv.innerHTML = "<i>Opbouw output</i>";
 }
 
 function fShowNaam(beers) {
@@ -112,21 +126,24 @@ function fShowTabelObjBuild(beers) {
     fTijdStop();
 }
 
-oInfo = {
-    naam: [
+//onderstaand object met info stond eerst hard in deze code maar is verhuist naar de "poor-men"-API: pm_api.js
+// De API is "poor-men" omdat de JSON die deze oplevert meteen hard in de JS staat en niet via AJAX opgehaald wordt uit een DB
+
+/* oInfo = {
+    "naam": [
         "weergave van naam en brouwer",
         "ophalen bier-tabel via Axios",
         "opbouw html var met JS",
         "vullen van output-div via <i>innerHTML</i>"
     ],
-    tabel: [
+    "tabel": [
         "weergave van complete biertabel",
         "ophalen bier-tabel via Axios",
         "headers: haalt veldnamen uit het eerste bier-row",
         "opbouw html var met JS",
         "vullen van output-div via <i>innerHTML</i>"
     ],
-    tabel_obj: [
+    "tabel_obj": [
         "weergave van complete biertabel via objectopbouw van tabel met plain JS",
         "ophalen bier-tabel via Axios",
         "headers: haalt veldnamen uit het eerste bier-row",
@@ -135,4 +152,4 @@ oInfo = {
         "aan een <i>td</i> append je een <i>textNode</i> met de html-inhoud",
         "vullen van output-div via <i>append van table aan output-div</i>"
     ],
-}
+} */

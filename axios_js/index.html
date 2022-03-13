@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body onload="fReset()">
+<body onload="fInitialize()">
     <div id="container">
         <h1>Weergaven van de biertabel vanuit API</h1>
         <div style="display:flex">
@@ -17,11 +17,12 @@
             </div>
             <div id="infoDiv"></div>
         </div>
-        <button onclick="fReset()" style="background-color:lightgreen">leeg output</button>
+        <button onclick="fInitialize()" style="background-color:lightgreen">leeg output</button>
         <div id="output"></div>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+    <!-- <script src="../pm_api.js"></script> -->
     <script src="script.js"></script>
 </body>
 

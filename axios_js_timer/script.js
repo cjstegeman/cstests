@@ -130,21 +130,24 @@ function fShowTabelObjBuild(beers) {
     fTijdStop();
 }
 
-oInfo = {
-    naam: [
+//onderstaand object met info stond eerst hard in deze code maar is verhuist naar de "poor-men"-API: pm_api.js
+// De API is "poor-men" omdat de JSON die deze oplevert meteen hard in de JS staat en niet via AJAX opgehaald wordt uit een DB
+
+/* oInfo = {
+    "naam": [
         "weergave van naam en brouwer",
         "ophalen bier-tabel via Axios",
         "opbouw html var met JS",
         "vullen van output-div via <i>innerHTML</i>"
     ],
-    tabel: [
+    "tabel": [
         "weergave van complete biertabel",
         "ophalen bier-tabel via Axios",
         "headers: haalt veldnamen uit het eerste bier-row",
         "opbouw html var met JS",
         "vullen van output-div via <i>innerHTML</i>"
     ],
-    tabel_obj: [
+    "tabel_obj": [
         "weergave van complete biertabel via objectopbouw van tabel met plain JS",
         "ophalen bier-tabel via Axios",
         "headers: haalt veldnamen uit het eerste bier-row",
@@ -153,4 +156,5 @@ oInfo = {
         "aan een <i>td</i> append je een <i>textNode</i> met de html-inhoud",
         "vullen van output-div via <i>append van table aan output-div</i>"
     ],
-}
+} */
+

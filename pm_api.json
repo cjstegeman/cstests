@@ -1,0 +1,51 @@
+{
+    "oInfo": {
+        "naam": [
+            "weergave van naam en brouwer",
+            "ophalen bier-tabel via Axios",
+            "opbouw html var met JS",
+            "vullen van output-div via <i>innerHTML</i>"
+        ],
+        "tabel": [
+            "weergave van complete biertabel",
+            "ophalen bier-tabel via Axios",
+            "headers: haalt veldnamen uit het eerste bier-row",
+            "opbouw html var met JS",
+            "vullen van output-div via <i>innerHTML</i>"
+        ],
+        "tabel_obj": [
+            "weergave van complete biertabel via objectopbouw van tabel met plain JS",
+            "ophalen bier-tabel via Axios",
+            "headers: haalt veldnamen uit het eerste bier-row",
+            "opbouw objecten: via document.createElement",
+            "aan element <i>table</i> append je element <i>tr</i>, daaraan een <i>td</i>, etc",
+            "aan een <i>td</i> append je een <i>textNode</i> met de html-inhoud",
+            "vullen van output-div via <i>append van table aan output-div</i>"
+        ],
+        "timer": [
+            "zelfde weergave als die van \"plain js\" maar nu met een timer op de verschillende functies"
+        ]
+    },
+
+    "apps": [
+        { 
+            "title": "plain js",
+            "aInfo": ["naam", "tabel", "tabel_obj" ],
+            "map": "axios_js"
+        },
+        {
+            "title": "plain js met timer",
+            "aInfo": [
+                "timer"
+            ],
+            "map": "axios_js_timer"
+        },
+        {   
+            "title": "vue",
+            "aInfo": [ "vue_filter" ],
+            "map": "axios_vue_filter"
+        }
+    ]
+
+
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>He daar {{ message }}</h1>
+
+        <table class="tblA" v-if="oJson">
+            <tr>
+                <th>app</th>
+                <th>onderdelen</th>
+            </tr>
+            <tr v-for="app in oJson.apps" >
+                <td>
+                    <strong>{{ app.title }}</strong>
+                    <br><br>
+                    <a v-bind:href="app.map">link</a>
+                </td>
+                <td>
+                    <table class="tblA">
+                        <tr>
+                            <th>titel</th>
+                            <th>items in weergave</th>
+                        </tr>
+                        <tr v-for="item in app.oInfoItems">
+                            <td>{{ item.title }}</td>
+                            <td>
+                                <ul>
+                                    <li v-for="info_item in item.aInfo">{{info_item}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+
+    <script>
+        new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        message: 'Vue is actief!',
+                        oJson: {},
+                        aApps: [],
+                    }
+                },
+                created() {
+                    var url = '../pm_api.json';
+                    axios.get(url)
+                        .then((response) => {
+                            let oJson = response.data;
+                            console.log("oJson =", oJson);
+
+                            // voeg de array met info toe aan de apps
+                            oJson.apps.forEach(function (app, index1) {
+                                // naast de oude array met alleen info-titles wordt een 2de object aangemaakt met titles en oInfoItems
+                                app.oInfoItems = {};
+                                app.aInfo.forEach(function (info, index2) {
+                                    //console.log("app.title = "+ app.title+" info =", info, "oJson.oInfo = ", oJson.oInfo);
+                                    app.oInfoItems[info] = { "aInfo": oJson.oInfo[info], "title":info };
+                                });
+                            });
+                            this.oJson = oJson; // zet lokale variable oJson ook in de scope van deze Vue instantie
+                        })
+                        .catch(function (error) {
+                            console.log("error=", error);
+                        });
+                }
+                
+            });
+    </script>
+</body>
+
+</html>
