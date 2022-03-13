@@ -8,14 +8,14 @@
 
 <body onload="fInitialize()">
     <div id="container">
-        <h1>Weergaven van de biertabel vanuit API</h1>
-        Met AJAX-requests! Houdt rekening met dat asynchrone AJAX promisses later worden geladen dan dat HTML geschreven is..!
-        Dus mogelijk geen output...!!<br><br>
+        <h1>Opbouw HTML met eigengemaakte JSON (=JS object) of een array</h1>
+        Zonder AJAX-requests, dus geen problemen met verlate, asynchrone promisses<br><br>
         <div style="display:flex">
             <div style="display:flex; flex-direction: column;">
-                <button onclick="fLoadJson('naam')">laat <i>[naam], [brouwer]</i> zien</button>
-                <button onclick="fLoadJson('tabel')">laat <i>table-bieren</i> zien</button>
-                <button onclick="fLoadJson('tabel_obj')"><i>table-bieren</i> via obj-build</button>
+                <button onclick="fShow('table_flat')">toon <i>platte</i> tabel</button>
+                <button onclick="fShow('table_nested')">toon <i>geneste</i> tabel</button>
+                <button onclick="fShow('flat2nestedA')">bouw platte array om naar<br>geneste en toon tabel</button>
+                <button onclick="fShow('flat2nestedB')">bouw platte array om naar<br>nog dieper geneste </button>
             </div>
             <div id="infoDiv"></div>
         </div>
@@ -24,6 +24,7 @@
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+    <script src="../pm_api.js"></script>
     <script src="script.js"></script>
 </body>
 

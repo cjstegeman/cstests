@@ -4,15 +4,39 @@ let currentDate, timestart, timestop;
 let out = document.getElementById("output");
 let outTime = document.getElementById("outputTime");
 let infoDiv = document.getElementById("infoDiv");
+let oInfo;
+
+function fInitialize() {
+    console.clear;
+    fLoadInfo();
+    out.innerHTML = "<i>Output HTML</i>";
+    infoDiv.innerHTML = "<i>Opbouw output</i>";
+    outTime.innerHTML = "<i>Output tijd</i>";
+}
+
+function fLoadInfo() {
+    console.clear();
+    axios.get("../pm_api.json")
+        .then((response) => {
+            // console.log("response =", response);
+            oInfo = response.data.oInfo;
+            console.log("oInfo =", oInfo);
+        })
+        .catch(function (error) {
+            console.log("error=", error);
+        });
+}
 
 function fLoadJson(weergave) {
+    console.clear();
     let url = 'https://15euros.nl/api/bier_basic.php';
     //console.log("in fLoadJson. URL = " + url);
     axios.get(url)
         .then((response) => {
             let beers = response.data;
             //console.log("beers 1 =", beers);
-            fShow(beers, weergave)   
+            fTijdStart()
+            fShow(beers, weergave)
         })
         .catch(function (error) {
             console.log("error=", error);
@@ -21,15 +45,14 @@ function fLoadJson(weergave) {
 // fLoadJson('test');
 
 function fShow(beers, weergave) {
-    //console.log("beers A =", beers);
+    console.log("beers A =", beers); console.log("weergave =", weergave); console.log("oInfo =", oInfo);
     out.innerHTML = "<h3>Biertjes (weergave: " + weergave + ")</h3>";
     let info = "<h3>Opbouw output:</h3><ul>";
     oInfo[weergave].forEach(function (item, index) {
         info += "<li>" + item + "</li>";
     });
-    info += "<ul>";
+    info += "</ul>";
     infoDiv.innerHTML = info;
-    fTijdStart();
 
     if (weergave == 'naam') fShowNaam(beers);
     if (weergave == 'tabel') fShowTabel(beers);
@@ -49,11 +72,6 @@ function fTijdStop() {
     outTime.innerHTML += dSec + " sec"
 }
 
-function fReset() {
-    out.innerHTML     = "<i>Output HTML</i>";
-    outTime.innerHTML = "<i>Output tijd</i>";
-    infoDiv.innerHTML = "<i>Opbouw output</i>";
-}
 
 function fShowNaam(beers) {
     let html = "";

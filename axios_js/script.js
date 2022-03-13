@@ -1,11 +1,11 @@
 
-let beers = [];
-let currentDate, timestart, timestop;   
+let beers = []; 
 let out = document.getElementById("output");
 let infoDiv = document.getElementById("infoDiv");
 let oInfo;
 
 function fInitialize() {
+    console.clear();
     fLoadInfo();
     out.innerHTML = "<i>Output HTML</i>";
     infoDiv.innerHTML = "<i>Opbouw output</i>";
@@ -16,7 +16,7 @@ function fLoadInfo() {
         .then((response) => {
             // console.log("response =", response);
             oInfo = response.data.oInfo;
-            console.log("oInfo =", oInfo);
+            //console.log("oInfo =", oInfo);
         })
         .catch(function (error) {
             console.log("error=", error);
@@ -24,12 +24,14 @@ function fLoadInfo() {
 }
 
 function fLoadJson(weergave) {
+    console.clear();
     let url = 'https://15euros.nl/api/bier_basic.php';
     //console.log("in fLoadJson. URL = " + url);
     axios.get(url)
         .then((response) => {
             let beers = response.data;
             //console.log("beers 1 =", beers);
+
             fShow(beers, weergave)   
         })
         .catch(function (error) {
@@ -45,7 +47,7 @@ function fShow(beers, weergave) {
     oInfo[weergave].forEach(function (item, index) {
         info += "<li>" + item + "</li>";
     });
-    info += "<ul>";
+    info += "</ul>";
     infoDiv.innerHTML = info;
 
     if (weergave == 'naam') fShowNaam(beers);

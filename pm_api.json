@@ -24,6 +24,27 @@
         ],
         "timer": [
             "zelfde weergave als die van \"plain js\" maar nu met een timer op de verschillende functies"
+        ],
+        "table_flat": [
+            "json object als variabele in script gedefinieerd",
+            "\"platte\" tabel / JSON =&gt; array van studenten zonder sub-arrays",
+            "het is veel werk om deze platte tabel weer te geven als nested list van klas =&gt; student",
+            "makkelijker dan is: zet json object om in gewenste nesting"
+        ],
+        "table_nested": [
+            "json object als variabele in script gedefinieerd",
+            "\"geneste\" tabel / JSON =&gt; array van groepen met daarin sub-arrays van studenten",
+            "geneste JSON-structuur is makkelijk te vertalen naar geneste HTML (bijv. een <ul>)"
+        ],
+        "flat2nestedA": [
+            "voor weergave van geneste ul-structuur vanuit platte JSON:",
+            "- zet platte json studenten om naar geneste: groep =&gt; student",
+            "- geef geneste JSON gemakkelijk weer als HTML" 
+        ],
+        "flat2nestedB": [
+            "Als nestedB maar dan 1 stap dieper nog:",
+            "- geen: groep =&gt; student",
+            "- maar: groep =&gt; student =&gt; fav"
         ]
     },
 
@@ -39,6 +60,16 @@
                 "timer"
             ],
             "map": "axios_js_timer"
+        },
+        {
+            "title": "flat and nested arrays / json",
+            "aInfo": [
+                "table_flat",
+                "table_nested",
+                "flat2nestedA",
+                "flat2nestedB"
+            ],
+            "map": "axios_js_arr_obj"
         },
         {   
             "title": "vue",
