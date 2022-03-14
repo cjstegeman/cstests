@@ -68,7 +68,7 @@ function fShowTabel(beers) {
     let aFields = Object.keys(beers[0]);
     console.log("aFields = ", aFields);
 
-    let html = "<table class='tblA'>";
+    let html = "<table class='tblA dark'>";
 
     // schrijf headers in HTML
     html += "<tr>";
