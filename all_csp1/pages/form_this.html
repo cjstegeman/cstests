@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulier basis</title>
+    <style>
+        body {
+            font-family: verdana;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function fCheckInput(inp) {
+            //console.log("uit veld vnaam gegaan");
+            let waarde = inp.value;
+            console.log(inp.placeholder + " ingevuld: " + waarde);
+
+            if (inp.classList.contains("min2Char")) {
+                // ergergetg
+            }
+            
+            if (inp.classList.contains("max10Char")) {
+
+            }
+            
+            if(inp.classList.contains("pc")) {
+                let regex = /^[1-9][0-9]{3}[\s]?[A-Z]{2}$/i;
+                if( regex.test(inp.value) ) {
+                    inp.style.backgroundColor = "#AAFFAA";
+                    document.getElementById(inp.id + "Error").innerHTML = "";
+                } else {
+                    inp.style.backgroundColor = "#FFAAAA";
+                    document.getElementById(inp.id + "Error").innerHTML = inp.placeholder + " heeft geen geldige waarde";
+                }
+            }         
+
+            if (inp.classList.contains("email")) {
+                let regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                if(regex.test(inp.value) ) {
+                    inp.style.backgroundColor = "#AAFFAA";
+                    document.getElementById(inp.id + "Error").innerHTML = "";
+                } else {
+                    inp.style.backgroundColor = "#FFAAAA";
+                    document.getElementById(inp.id + "Error").innerHTML = inp.placeholder + " heeft geen geldige waarde";
+                }
+            }
+
+            function validateExpression(name, regexp) {
+                //zelfde code als hierboven
+            }
+
+            validateExpression('pc', /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i);
+            validateExpression('email', /..../ );
+
+        }
+    </script>
+</head>
+
+<body>
+    <h2>formulier</h2>
+    <form>
+        <table>
+            <tr>
+                <td><label for="vnaam">Voornaam</label></td>
+                <td>
+                    <input 
+                        type="text" 
+                        name="vnaam" 
+                        id="vnaam" 
+                        value="Chris" 
+                        placeholder="voornaam"
+                        onkeyup="fCheckInput(this)"
+                        class="min2Char max10Char"
+                    >
+                </td>
+                <td class="error" id="vnaamError"></td>
+            </tr>
+            <tr>
+                <td><label for="anaam">Achternaam</label></td>
+                <td>
+                    <input type="text" name="anaam" id="anaam" placeholder="achternaam" onkeyup="fCheckInput(this)">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="vnaam">Email</label></td>
+                <td>
+                    <input type="text" 
+                            name="email" 
+                            id="email" 
+                            value="" 
+                            placeholder="email" 
+                            onkeyup="fCheckInput(this)"
+                            class="email">
+                </td>
+                <td class="error" id="emailError"></td>
+            </tr>
+            <tr>
+                <td><label for="pc">Postcode</label></td>
+                <td>
+                    <input type="text" 
+                        name="pc" 
+                        id="pc" 
+                        value="" 
+                        placeholder="postcode" 
+                        onkeyup="fCheckInput(this)"
+                        class="pc"
+                    >
+                </td>
+                <td class="error" id="pcError"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

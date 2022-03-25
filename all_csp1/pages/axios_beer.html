@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>axios-js</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="infoTitle"></h1>
+
+        <h3>Uitwerking voorbeeld:</h3>
+        <!-- Onderstaande div "output is de enige div die nodig is voor dit voorbeeld, de rest is informatie."-->
+        <div id="output"></div> 
+
+        <div id="fileInfo">
+            <div class="infoPart">
+                <h3>Onderdelen in voorbeeld</h3>
+                <div id="infoItems"></div>
+            </div>
+            <div class="infoPart">
+                <h3>Eventuele oefen-opdrachten bij voorbeeld</h3>
+                <div id="infoTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="info.js"></script> <!-- levert var: "aInfo", is alleen nodig om info-blok in te vullen, hoort niet bij oefening -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script> <!-- laden van Axios-library -->
+
+    <script>
+   
+            // function waarin met een AJAX-request met Axios, de bieren worden opgehaald en de fShow wordt aangeroepen die de bieren toont
+            function fStart() {
+                let url = 'https://15euros.nl/api/bier_basic.php';
+                //console.log("in fLoadJson. URL = " + url);
+                axios.get(url)
+                    .then((response) => {
+                        let beers = response.data;
+                        //console.log("beers =", beers);
+                        fShow(beers)
+                    })
+                    .catch(function (error) {
+                        console.log("error=", error);
+                    });
+            }
+            fStart(); //fStart wordt bij het laden van de pagina direct aangeroepen
+
+            // fShow krijgt als parameter "beers" mee van het AJAX-request en bouwt met een JS foreach een variabele html op waarin de biertjes getoond worden
+            function fShow(beers) {
+                let html = "";
+                beers.forEach(function (beer, index) {
+                    html += index + ") " + beer.naam + ", " + beer.brouwer + "<br>";
+                });
+                document.getElementById("output").innerHTML += html;
+            }
+
+        /* ------ stopt ------------ script dat hoort bij dit voorbeeld  ------------------------------------------------------ */
+
+
+        /* ------ start ----------- script voor vullen van titel en informatieblokken, hoort niet bij voorbeeld  --------------- */
+        let oInfo = aInfo[0];
+        function get_oInfo(nr) {
+            let oInfo = aInfo[nr];
+            //console.log("oInfo = ", oInfo);
+            document.getElementById("infoTitle").innerHTML = oInfo.title;
+            document.getElementById("infoItems").innerHTML = getUl(oInfo.info);
+            document.getElementById("infoTasks").innerHTML = getUl(oInfo.oefeningen);
+        }
+
+        function getUl(arr) {
+            let htm = "<ul>";
+            arr.forEach(function (item, index) {
+                htm += "<li>" + item + "</li>";
+            });
+            htm += "</ul>";
+            return htm;
+        }
+    
+        
+    /* ------ stop ------------ script voor vullen van titel en informatieblokken, hoort niet bij voorbeeld  --------------- */
+
+        
+    </script>
+</body>
+
+</html>

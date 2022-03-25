@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h3>Basis voorbeelden Javascript CSP1</h3>
+        <table class="tblA" v-if="aInfo">
+            <tr>
+                <th>titel</th>
+                <th>link</th>
+                <th>inhoud</th>
+                <th>oefen-opdrachten</th>
+            </tr>
+            <tr v-for="app in aInfo">
+                <td style="text-align:center; max-width:160px;" v-html="app.title"></td>
+                <td>
+                    <a v-bind:href="app.file">link</a>
+                    
+                <i class="fa-solid fa-user"></i>
+                </td>
+                <td>
+                   <ul>
+                       <li v-for="inf in app.info">{{inf}}</li>
+                   </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li v-for="oef in app.oefeningen">{{oef}}</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script> -->
+    <script src="info.js"></script> <!-- alleen nodig om info-blok in te vullen, levert aInfo -->
+
+    <script>
+        
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    aInfo: aInfo, // aInfo komt uit de (in de root gelinkte) file "info.js"
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

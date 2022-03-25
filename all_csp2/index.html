@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h3>Basis voorbeelden Javascript, JSON, AJAX object- en array-bewerkingen</h3>
+        <table class="tblA" v-if="aInfo">
+            <tr>
+                <th>titel</th>
+                <th>link</th>
+                <th>inhoud</th>
+                <th>oefen-opdrachten</th>
+            </tr>
+            <tr v-for="app in aInfo">
+                <td style="text-align:center; max-width:160px;">
+                    <strong>{{ app.title }}</strong>
+                </td>
+                <td>
+                    <a v-bind:href="'pages/'+ app.file">link</a>
+                </td>
+                <td>
+                   <ul>
+                       <li v-for="inf in app.info">{{inf}}</li>
+                   </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li v-for="oef in app.oefeningen">{{oef}}</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script> -->
+    <script src="info.js"></script> <!-- alleen nodig om info-blok in te vullen, hoort niet bij oefening -->
+
+    <script>
+        
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: 'Vue is actief!',
+                    aInfo: aInfo, // aInfo komt uit de (in de root gelinkte) file "info.js"
+                }
+            },
+            created() {
+                //console.log("in created");
+                console.log("aInfo = ", aInfo);
+            }
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulier basis</title>
+    <style>
+        body {
+            font-family: verdana;
+        }
+
+        .error {
+            color:darkred;
+            font-size:80%;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function fCheckInput(inp) {
+            //console.log("uit veld vnaam gegaan");
+            let waarde = inp.value;
+            //console.log(inp.placeholder + " ingevuld: " + waarde);
+
+            //console.log("inp.classList: " + inp.classList);
+            //console.log("inp.classList.contains: " + inp.classList.contains('max1Char') );
+
+             if (inp.classList.contains("min2Char")) {
+                let l = waarde.length;
+                console.log("inp.id = " + inp.id);
+                if(l < 2) {
+                    inp.style.backgroundColor = "#FFAAAA";
+                    document.getElementById(inp.id + 'Error').innerHTML = " heeft minder dan 2 tekens";
+                } else {
+                    document.getElementById(inp.id).style.backgroundColor = "#AAFFAA";
+                    document.getElementById(inp.id + 'Error').innerHTML = "";
+                }
+             }
+
+            if (inp.classList.contains("max10Char")) {
+                // zelfde soort code
+            }
+        }
+            
+    </script>
+</head>
+
+<body>
+    <h2>formulier</h2>
+    <form>
+        <table>
+            <tr>
+                <td><label for="vnaam">Voornaam</label></td>
+                <td>
+                    <input 
+                        type="text" 
+                        name="vnaam" 
+                        id="vnaam" 
+                        value="" 
+                        placeholder="voornaam"
+                        onkeyup="fCheckInput(this)" 
+                        class="min2Char max10Char"
+                    >
+                </td>
+                <td class="error" id="vnaamError"></td>
+            </tr>
+            <tr>
+                <td><label for="anaam">Achternaam</label></td>
+                <td>
+                    <input 
+                        type="text" 
+                        name="anaam" 
+                        id="anaam" 
+                        placeholder="achternaam" 
+                        onkeyup="fCheckInput(this)"
+                        class="min2Char max10Char"
+                    >
+                </td>
+                <td class="error" id="anaamError"></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td>
+                    <input 
+                        type="text" 
+                        name="email" 
+                        id="email" 
+                        value="" 
+                        placeholder="email" 
+                        onkeyup="fCheckInput(this)"
+                        class="email">
+                </td>
+                <td class="error" id="emailError"></td>
+            </tr>
+            <tr>
+                <td><label for="pc">Postcode</label></td>
+                <td>
+                    <input 
+                        type="text" 
+                        name="pc" 
+                        id="pc" value="" 
+                        placeholder="postcode" 
+                        onkeyup="fCheckInput(this)"
+                        class="pc"
+                    >
+                </td>
+                <td class="error" id="pcError"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
