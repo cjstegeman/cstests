@@ -1,28 +1,29 @@
 
     let aInfo = [
         {
-            "title": "Axios-bier",
-            "file"  : "axios_beer.html",
+            "title": "axios-base",
+            "file"  : "axios_base.html",
             "info" : [
+                "AJAX-(/HTTP-)request via <span class='special'>Axios</span>", 
                 "weergave van naam en brouwer",
-                "ophalen bieren via Axios",
                 "opbouw html var met JS",
                 "vullen van output-div via <i>innerHTML</i>"
             ],
             "oefeningen" : [
                 "Geef de velden in een tabel weer",
                 "Voeg zelf in JS of in de HTML, statisch de headers (&lt;th&gt;) toe",
-                "kijk of je de for-each loop kan vervangen voor een gewone for-loop. Welke heeft jou voorkeur?",
-                "zorg dat de nummering niet bij 0, maar bij 1 begint"
+                "kijk of je de <span class='special'>for-each</span> loop kan vervangen voor een gewone <span class='special'>for-loop</span>. Welke heeft jou voorkeur?",
+                "zorg dat de nummering niet bij 0, maar bij 1 begint",
+                "maak dezelfde opdracht als hierboven met de <span class='special'>Fetch-API</span> van JS zelf (ipv. Axios)"
             ]
         },
         {
             "title": "Axios-bier-headers ",
-            "file": "axios_beer_headers.html",
+            "file": "axios_headers_from_fields.html",
             "info": [
-                "ophalen de veldnamen van de biertabel",
+                "<span class='special'>ophalen de veldnamen</span> van de biertabel",
                 "ophalen bieren via Axios",
-                "weergeven van veldnamen en biertjes via <i>innerHTML</i>"
+                "weergeven van veldnamen en biertjes via <span class='special'>innerHTML</span>"
             ],
             "oefeningen": [
                 "Geef velden in een tabel weer",
@@ -30,20 +31,51 @@
             ]
         },
         {
-            "title": "Axios-bier-brouwers ",
-            "file": "axios_beer_brouwers.html",
+            "title": "Axios-nested-JSON ",
+            "file": "axios_nested_json.html",
             "info": [
-                "na ophalen van de biertabel, unieke array met brouwers opbouwen",
+                "na ophalen van de biertabel, <span class='special'>unieke array</span> met brouwers opbouwen",
                 "weergeven van alle brouwers"
             ],
             "oefeningen": [
-                "sorteer de array met brouwers alfabetisch",
-                "breid je script uit: maak een array met objecten:",
+                "<span class='special'>sorteer de array</span> met brouwers alfabetisch",
+                "breid je script uit: haal een <span class='special'>unieke array met objecten</span>:",
                 "aBrouwers[0] = <br>"+
                 "{<br>"+
                 "&nbsp; &nbsp; \"brouwer\" = \"brouwernaam\", <br>"+
-                "&nbsp; &nbsp; \"biertjes\" = \"array_met_alle_biertjes_van_die_brouwer\", <br>"+
+                "&nbsp; &nbsp; \"biertjes\" = \"[.., ..] (array_alle_biertjes_brouwer)\", <br>"+
                 "}",
+            ]
+        },
+        {
+            "title": "jquery-object-build",
+            "file": "jquery_obj_build.html",
+            "info": [
+                "AJAX-(/HTTP-) request via jQuery",
+                "<span class='special'>omzetten flat-JSON naar nested</span>",
+                "opbouw html &lt;ul&gt; in variable met JS",
+                "<span class='special'>opbouw html  &lt;ul&gt;-<i>object</i> met jquery</span>",
+            ],
+            "oefeningen": [
+                "Geef bovenstaande in een tabel weer",
+                "\"nest\" de JSON nog dieper: verzamel onder de gisting (alle biertjes van) de brouwers",
+                "geef deze in een UL-structuur weer"
+            ]
+        },
+        {
+            "title": "static JSON",
+            "file": "static_json.html",
+            "info": [
+                "geen gebruik van API, maar <span class='special'>statische JSON</span> in JS opgebouwd",
+                "schrijven van \"platte\" JSON naar HTML",
+                "schrijven van \"geneste\" JSON naar HTML",
+                "gebruik van algemene function voor uitlezen van objects/arrays, flat/nested",
+            ],
+            "oefeningen": [
+                "Maak een script dat de platte JSON inleest en in een HTML tabel weergeeft",
+                "zie hierboven maar dan met een geneste tabel",
+                "zet de statische JSON in een aparte file: een <span class='special'>poor-men-API</span>",
+                "haal met de <span class='special'>Fetch-API</span> van JS zelf de poor-men-API op (verder zelfde opdracht)"
             ]
         },
 

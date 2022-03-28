@@ -22,6 +22,14 @@ ul {
     padding-left: 1.4em;
 }
 
+.special {
+    font-weight: 600;
+    font-style:italic;
+    color:darkred;
+    font-size:120%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .infoPart {border:1px solid gray; padding:5px; margin-bottom:10px; color:rgb(38, 85, 114); }
 #infoTitle, #fileInfo { color:rgb(38, 85, 114); }
 

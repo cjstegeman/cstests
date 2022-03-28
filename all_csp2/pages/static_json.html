@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSP2 base files</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    Output van in JS opgebouwde HTML (zie JS-script)
+    <hr>
+   
+    <button onclick="fShowFlatTable();">show flat</button> &nbsp; 
+    <button onclick="fShowNestedTable();">show nested</button>
+    <div id="output"></div>
+
+    <script>
+        let out = document.getElementById("output");
+
+        function fShowFlatTable() {
+            out.innerHTML = fGetUL(stdsA);
+        }
+        
+        function fShowNestedTable() {
+            out.innerHTML = fGetUL(stdsB);
+        }
+
+        // example static, flat JSON
+        let stdsA = [
+            { "naam": "Son", "groep": "SD2A", "fav": "backend" },
+            { "naam": "Lucas", "groep": "SD2B", "fav": "frontend" },
+            { "naam": "Tommy", "groep": "SD2A", "fav": "backend" },
+            { "naam": "Simon", "groep": "SD2A", "fav": "frontend" },
+            { "naam": "Oskar", "groep": "SD2B", "fav": "frontend" },
+            { "naam": "Jesse", "groep": "SD2B", "fav": "backend" },
+            { "naam": "Sven", "groep": "SD2A", "fav": "frontend" },
+            { "naam": "Fabian", "groep": "SD2B", "fav": "backend" },
+            { "naam": "Dylan", "groep": "SD2B", "fav": "frontend" },
+        ];
+
+        // example static, nested JSON
+        let stdsB = [
+            {
+                "groep": "SD2A",
+                "std": [
+                    { "naam": "Son", "fav": "backend" },
+                    { "naam": "Tommy", "fav": "backend" },
+                    { "naam": "Simon", "fav": "frontend" },
+                    { "naam": "Sven", "fav": "frontend" },
+                ]
+            }, {
+                "groep": "SD2B",
+                "std": [
+                    { "naam": "Lucas", "fav": "frontend" },
+                    { "naam": "Oskar", "fav": "frontend" },
+                    { "naam": "Jesse", "fav": "backend" },
+                    { "naam": "Fabian", "fav": "backend" },
+                    { "naam": "Dylan", "fav": "frontend" },
+                ]
+            }
+        ]
+
+        // function fGetUL() krijgt een (nested) array of object mee (=arr_obj) en plaatst de inhoud daarvan in 
+        // een (nested) <ul>-<li> structuur. ALS VOORBEELD!! (alleen onderdelen gebruiken in eigen fuctions)
+            function fGetUL(arr_obj) {
+                let html = "<ul style='margin-top:5px;'>";
+
+                if (Array.isArray(arr_obj)) { // als arr_obj een array is:
+                    arr_obj.forEach(function (item, index) {
+                        // test of het item uit de array op zich ook weer een array of object is
+                        if (typeof (item) == "object" || Array.isArray(item)) {
+                            //zo ja: voer deze dan weer in fGetUL()
+                            html += "<li>" + index + ": "
+                            html += fGetUL(item)
+                            html += "</li>";
+                        }
+                        else {
+                            //zo nee: zet de inhoud dan in een <li>
+                            html += "<li>" + index + ": " + item + "</li>"; // komt niet voor..
+                        }
+                    });
+                }
+                else if (typeof (arr_obj) == "object") { // als arr_obj een object is:
+                    Object.keys(arr_obj).forEach(function (objKey, index) {
+                        if (typeof (arr_obj[objKey]) == "object" || Array.isArray(arr_obj[objKey])) {
+                            html += "<li>" + objKey + " =&gt; ";
+                            html += fGetUL(arr_obj[objKey]);
+                            html += "</li>";
+                        } else {
+                            html += "<li>" + objKey + " =&gt; " + arr_obj[objKey] + "</li>";
+                        }
+                    })
+                }
+                else {
+
+                }
+                html += "</ul>";
+                return html;
+            }
+    </script>
+</body>
+
+</html>

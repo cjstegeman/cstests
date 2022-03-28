@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSP2 base files</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    Output van in JS opgebouwde HTML (zie JS-script)<hr>
+    <button onclick="fgetBrouwers(false);">show flat</button> &nbsp;
+    <button onclick="fgetBrouwers(true);">show nested</button>
+    <div id="output"></div>
+
+    <!-- aanroepen van jQuery bibliotheek voor o.a. AJAX-requests (met integrity check) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous">
+    </script>
+    <script>
+        // function waarin met een AJAX-request met Axios, de bieren worden opgehaald 
+        // en de fShow wordt aangeroepen die de bieren toont
+        function fgetBrouwers(bNested) {
+            let url = 'https://15euros.nl/api/bier_basic.php';
+            console.log("in fStart. URL = " + url);
+            $.getJSON(url, function (data, status) {
+                // console.log("Data:", data); console.log("Status:", status);
+
+                // Opbouwen genest object brouwers met bieren
+                let oBrouwers = {};
+                data.forEach(function (beer, index) {                    
+                    if (oBrouwers[beer.brouwer] ) {  //vraag of bijv. het object aBrouwers["de Troch"] al bestaat}
+                        oBrouwers[beer.brouwer].push( beer ); // push het beertje van die brouwer in de array
+                    } else { //als bijv. het object aBrouwers["de Troch"] NOG NIET bestaat}
+                        oBrouwers[beer.brouwer] = []; // maak van die key: "de Troch"  een nieuwe array aan
+                        oBrouwers[beer.brouwer].push( beer ); // push het beertje van die brouwer in de array
+                    }  
+                });
+                //console.log("oBrouwers = ", oBrouwers);
+                if(!bNested) { getUl(oBrouwers, false); }
+                if( bNested) { getUl(oBrouwers, true ); }
+            });
+        }        
+
+        function getUl(oBrouwers, bNested) {
+            //console.log("oBrouwers in getUL", oBrouwers);
+
+            let ul = $("<ul>");
+            const keys = Object.keys(oBrouwers); // waarin de keys, de brouwers zijn
+            keys.forEach((brouwer, index) => {
+                //console.log("brouwer =", brouwer);
+
+                if(!bNested) {
+                    let li = $("<li>");
+                    ul.append(
+                        li.append(brouwer)
+                    )
+                }
+
+                if (bNested) {
+                    console.log("oBrouwers[brouwer] = ", oBrouwers[brouwer])
+                    let li = $("<li>");
+                    let ulBieren = "<ul>";
+                    oBrouwers[brouwer].forEach(function (beer, index2) {  
+                        ulBieren += "<li>";
+                        ulBieren += "  naam = "+ beer.naam+"<br>";
+                        ulBieren += "  gisting = " + beer.gisting;
+                        ulBieren += "</li>";
+                    });
+                    htmlBieren = "</ul>";
+
+                    ul.append(
+                        li.append(brouwer),
+                        li.append(ulBieren)
+                    )
+                }
+                
+            });
+            $("#output").html(ul);
+        }
+
+        
+    </script>
+</body>
+
+</html>

@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="app">
-        <h3>Basis voorbeelden Javascript, JSON, AJAX object- en array-bewerkingen</h3>
+        <h3>Voorbeelden en oefeningen met Javascript:</h3> 
+        <h2>JSON, AJAX object- en array-bewerkingen</h2>
         <table class="tblA" v-if="aInfo">
             <tr>
                 <th>titel</th>
@@ -15,21 +16,27 @@
                 <th>inhoud</th>
                 <th>oefen-opdrachten</th>
             </tr>
-            <tr v-for="app in aInfo">
+            <tr v-for="(app, index) in aInfo">
                 <td style="text-align:center; max-width:160px;">
-                    <strong>{{ app.title }}</strong>
+                    <strong>{{index+1}}) {{ app.title }}</strong>
                 </td>
                 <td>
                     <a v-bind:href="'pages/'+ app.file">link</a>
                 </td>
                 <td>
-                   <ul>
-                       <li v-for="inf in app.info">{{inf}}</li>
-                   </ul>
+                    <strong>items van {{index+1}})</strong>
+                    <ul>
+                        <li v-for="inf in app.info">
+                            <span v-html="inf"></span>
+                        </li>
+                    </ul>
                 </td>
                 <td>
-                    <ul>
-                        <li v-for="oef in app.oefeningen">{{oef}}</li>
+                    <strong>opdracht {{index+1}})</strong>
+                    <ul >
+                        <li v-for="oef in app.oefeningen" style="list-style-type:lower-alpha;">
+                            <span v-html="oef"></span>
+                        </li>
                     </ul>
                 </td>
             </tr>
