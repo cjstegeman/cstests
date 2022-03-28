@@ -57,7 +57,7 @@
                 "<span class='special'>opbouw html  &lt;ul&gt;-<i>object</i> met jquery</span>",
             ],
             "oefeningen": [
-                "Geef bovenstaande in een tabel weer",
+                "Geef de data in een tabel weer",
                 "\"nest\" de JSON nog dieper: verzamel onder de gisting (alle biertjes van) de brouwers",
                 "geef deze in een UL-structuur weer"
             ]
